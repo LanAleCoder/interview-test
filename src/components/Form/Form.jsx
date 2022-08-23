@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "../Input";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Form = ({ estudiante, setEstudiante }) => {
   const handleOnChange = (e) => {
@@ -43,7 +44,7 @@ const Form = ({ estudiante, setEstudiante }) => {
           toast.addEventListener("mouseleave", Swal.resumeTimer);
         },
       });
-  
+
       Toast.fire({
         icon: "warning",
         title: "Todos los parametros son obligatorios",
@@ -60,6 +61,63 @@ const Form = ({ estudiante, setEstudiante }) => {
     fetch("http://localhost:3000/api/participar", options)
       .then((res) => res.json())
       .then((res) => {
+        if (res.mensaje) {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 6000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+          Toast.fire({
+            icon: "warning",
+            title: res.mensaje,
+          });
+          setEstudiante({
+            _id: "",
+            nombre: nombre,
+            carnet: carnet,
+            genero: genero,
+            telefono: telefono,
+            fechaNacimiento: fechaNacimiento,
+            carrera: carrera,
+            generoPoesia: generoPoesia,
+            direccion: direccion,
+          });
+        } else {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 6000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Registro con exito",
+          });
+          setEstudiante({
+            _id: "",
+            nombre: "",
+            carnet: "",
+            genero: "",
+            telefono: "",
+            fechaNacimiento: "",
+            carrera: "",
+            generoPoesia: "",
+            direccion: "",
+          });
+        }
+      })
+      .catch((err) => {
         const Toast = Swal.mixin({
           toast: true,
           position: "top-end",
@@ -74,42 +132,9 @@ const Form = ({ estudiante, setEstudiante }) => {
 
         Toast.fire({
           icon: "warning",
-          title: res.mensaje,
+          title: err.error.mensaje,
         });
-      })
-      .catch((err) => { 
-        if(err) {
-          const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 6000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener("mouseenter", Swal.stopTimer);
-              toast.addEventListener("mouseleave", Swal.resumeTimer);
-            },
-          });
-  
-          Toast.fire({
-            icon: "warning",
-            title: err.error.mensaje,
-          });
-          return
-        }
       });
-
-    setEstudiante({
-      _id: "",
-      nombre: "",
-      carnet: "",
-      genero: "",
-      telefono: "",
-      fechaNacimiento: "",
-      carrera: "",
-      generoPoesia: "",
-      direccion: "",
-    });
   };
   return (
     <div className="flex bg-neutral-100 h-screen w-screen justify-center items-center">
@@ -187,6 +212,12 @@ const Form = ({ estudiante, setEstudiante }) => {
               onChange={handleOnChange}
               value={direccion}
             />
+            <Link
+              to="/reporte"
+              className="text-xs text-center underline decoration-solid decoration-blue-700 text-blue-600 font-kollektif hover:text-blue-800 transition-colors"
+            >
+              Buscar el dia en el que participo
+            </Link>
             <button
               type="submit"
               className="bg-black text-white w-89 m-2 justify-center py-3 px-3 rounded-md hover:bg-slate-900 active:transform active:translate-y-2 transition-all font-serif"
