@@ -2,6 +2,7 @@ import React from "react";
 import Input from "../Input";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import SelectInput from "../SelectInput/SelectInput";
 
 const Form = ({ estudiante, setEstudiante }) => {
   const handleOnChange = (e) => {
@@ -57,8 +58,11 @@ const Form = ({ estudiante, setEstudiante }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(estudiante),
     };
-
-    fetch("http://localhost:3000/api/participar", options)
+    const urlAPI = process.env.REACT_APP_URLAPI
+    fetch(
+      `${urlAPI}participar`,
+      options
+    )
       .then((res) => res.json())
       .then((res) => {
         if (res.mensaje) {
@@ -163,13 +167,18 @@ const Form = ({ estudiante, setEstudiante }) => {
               onChange={handleOnChange}
               value={carnet}
             />
-            <Input
+            <SelectInput
               className="px-3 py-2 w-44"
-              placeholder="Genero"
               type="text"
               name="genero"
               onChange={handleOnChange}
-              value={genero}
+              valueM={"Masculino"}
+              valueF={"Femenino"}
+              valueO={"Otro"}
+              name1={"Masculino"}
+              name2="Femenino"
+              name3="Otro"
+              nameInput={"Selecciona tu genero"}
             />
             <Input
               className="px-3 py-2 w-44"
@@ -197,13 +206,19 @@ const Form = ({ estudiante, setEstudiante }) => {
               onChange={handleOnChange}
               value={carrera}
             />
-            <Input
+            <SelectInput
               className="px-3 py-2 w-44"
               placeholder="Genero de poesía"
               type="text"
               name="generoPoesia"
               onChange={handleOnChange}
-              value={generoPoesia}
+              value1="Epico"
+              value2="Dramatico"
+              value3="Lirico"
+              name1={"Epico"}
+              name2="Dramatico"
+              name3="Lirico"
+              nameInput={"Genero de poesia"}
             />
             <Input
               className="px-3 py-2 w-89"
@@ -213,7 +228,7 @@ const Form = ({ estudiante, setEstudiante }) => {
               value={direccion}
             />
             <Link
-              to="/reporte"
+              to="reporte"
               className="text-xs text-center underline decoration-solid decoration-blue-700 text-blue-600 font-kollektif hover:text-blue-800 transition-colors"
             >
               Buscar el dia en el que participo

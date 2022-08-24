@@ -1,9 +1,8 @@
 import "./App.css";
 import Form from "./components/Form";
 import Lista from "./components/Lista";
-import Alerta from "./components/Alerta/alerta";
-import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 function App() {
   const [estudiante, setEstudiante] = useState({
     _id: "",
@@ -19,10 +18,10 @@ function App() {
   const [estudiantes, setEstudiantes] = useState([{}]);
   useEffect(() => {
     const getEstudiantes = () => {
-      fetch("http://localhost:3000/api/verSolicitudes")
+      const apiURL = process.env.REACT_APP_URLAPI
+      fetch(`${apiURL}verSolicitudes`)
         .then((res) => res.json())
         .then((res) => setEstudiantes(res.Solicitudes));
-      console.log(setEstudiantes);
     };
     getEstudiantes();
   }, []);
@@ -31,13 +30,12 @@ function App() {
     <div>
       <Routes>
         <Route
-          path="/"
+          path=""
           element={
             <Form estudiante={estudiante} setEstudiante={setEstudiante} />
           }
         />
-        <Route path="/alerta" element={<Alerta />} />
-        <Route path="/reporte" element={<Lista estudiante={estudiantes} />} />
+        <Route path="reporte" element={<Lista estudiante={estudiantes} />} />
       </Routes>
     </div>
   );
