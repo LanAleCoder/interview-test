@@ -2,7 +2,7 @@ import "./App.css";
 import Form from "./components/Form";
 import Lista from "./components/Lista";
 import { Routes, Route } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 function App() {
   const [estudiante, setEstudiante] = useState({
     _id: "",
@@ -15,16 +15,7 @@ function App() {
     generoPoesia: "",
     direccion: "",
   });
-  const [estudiantes, setEstudiantes] = useState([{}]);
-  useEffect(() => {
-    const getEstudiantes = () => {
-      const apiURL = process.env.REACT_APP_URLAPI
-      fetch(`${apiURL}verSolicitudes`)
-        .then((res) => res.json())
-        .then((res) => setEstudiantes(res.Solicitudes));
-    };
-    getEstudiantes();
-  }, []);
+  
 
   return (
     <div>
@@ -35,7 +26,7 @@ function App() {
             <Form estudiante={estudiante} setEstudiante={setEstudiante} />
           }
         />
-        <Route path="reporte" element={<Lista estudiante={estudiantes} />} />
+        <Route path="reporte" element={<Lista />} />
       </Routes>
     </div>
   );

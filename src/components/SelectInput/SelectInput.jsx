@@ -3,7 +3,7 @@ import React from "react";
 const SelectInput = ({onChange, nameInput, name, name1, name2, name3, className, value1,value2, value3, genero}) => {
   return (
     <>
-      <select className={`outline-none focus:ring transition-all rounded-md bg-zinc-200 shadow-lg shadow-zinc-700/25 m-2 ${className}`} name={name} onChange={onChange}>
+      <select className={`outline-none focus:ring transition-all rounded-md bg-zinc-200 shadow-lg shadow-zinc-700/10 m-2 ${className}`} name={name} onChange={onChange}>
         <option disabled selected defaultValue="">
           {nameInput}
         </option>

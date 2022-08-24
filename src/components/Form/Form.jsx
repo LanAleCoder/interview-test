@@ -1,10 +1,11 @@
 import React from "react";
 import Input from "../Input";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SelectInput from "../SelectInput/SelectInput";
 
 const Form = ({ estudiante, setEstudiante }) => {
+  const navigate = useNavigate();
   const handleOnChange = (e) => {
     setEstudiante({
       ...estudiante,
@@ -58,11 +59,8 @@ const Form = ({ estudiante, setEstudiante }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(estudiante),
     };
-    const urlAPI = process.env.REACT_APP_URLAPI
-    fetch(
-      `${urlAPI}participar`,
-      options
-    )
+    const urlAPI = process.env.REACT_APP_URLAPI;
+    fetch(`${urlAPI}participar`, options)
       .then((res) => res.json())
       .then((res) => {
         if (res.mensaje) {
@@ -227,12 +225,13 @@ const Form = ({ estudiante, setEstudiante }) => {
               onChange={handleOnChange}
               value={direccion}
             />
-            <Link
+            <button
               to="reporte"
               className="text-xs text-center underline decoration-solid decoration-blue-700 text-blue-600 font-kollektif hover:text-blue-800 transition-colors"
+              onClick={() => navigate("reporte") }
             >
               Buscar el dia en el que participo
-            </Link>
+            </button>
             <button
               type="submit"
               className="bg-black text-white w-89 m-2 justify-center py-3 px-3 rounded-md hover:bg-slate-900 active:transform active:translate-y-2 transition-all font-serif"
