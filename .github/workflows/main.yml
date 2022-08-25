@@ -30,7 +30,7 @@ jobs:
          npm install
          npm run-script build
         env:
-         REACT_APP_URLAPI: ${{ secrets.REACT_APP_URLAPI }}
+         REACT_APP_URLAPI: ${{secrets.REACT_APP_URLAPI}}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -44,6 +44,6 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
-         GITHUB_TOKEN: ${{ secrets.TOKEN }}
+         GITHUB_TOKEN: ${{secrets.TOKEN}}
          BRANCH: gh-pages
          FOLDER: build
