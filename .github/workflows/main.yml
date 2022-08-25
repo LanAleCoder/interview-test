@@ -30,7 +30,7 @@ jobs:
          npm install
          npm run-script build
         env:
-         REACT_APP_URLAPI: ${{ secrets.REACT_APP_URL_API}}
+         REACT_APP_URL_API: ${{ secrets.REACT_APP_URL_API}}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
