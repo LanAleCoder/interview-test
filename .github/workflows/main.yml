@@ -42,7 +42,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
       - name: Deploy
-        uses: LanAleCoder/interview-test@v0
+        uses: LanAleCoder/interview-test@v0.1.0
         with:
          GITHUB_TOKEN: ${{ secrets.TOKEN }}
          BRANCH: gh-pages
