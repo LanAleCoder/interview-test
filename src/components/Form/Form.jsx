@@ -59,8 +59,7 @@ const Form = ({ estudiante, setEstudiante }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(estudiante),
     };
-    const urlAPI = process.env.REACT_APP_URLAPI;
-    fetch(`${urlAPI}api/participar`, options)
+    fetch(`${process.env.REACT_APP_URLAPI}api/participar`, options)
       .then((res) => res.json())
       .then((res) => {
         if (res.mensaje) {
