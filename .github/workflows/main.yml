@@ -43,7 +43,7 @@ jobs:
           echo test, and deploy your project.
       - name: Deploy
         with:
-         uses: LanAleCoder/interview-test
+         uses: LanAleCoder/interview-test@v2
          GITHUB_TOKEN: ${{ secrets.TOKEN }}
          BRANCH: gh-pages
          FOLDER: build
