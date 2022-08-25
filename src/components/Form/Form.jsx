@@ -60,7 +60,7 @@ const Form = ({ estudiante, setEstudiante }) => {
       body: JSON.stringify(estudiante),
     };
     const urlAPI = process.env.REACT_APP_URLAPI;
-    fetch(`${urlAPI}participar`, options)
+    fetch(`${urlAPI}api/participar`, options)
       .then((res) => res.json())
       .then((res) => {
         if (res.mensaje) {
