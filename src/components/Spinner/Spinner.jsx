@@ -20,7 +20,7 @@ const Spinner = () => {
             fill="currentFill"
           ></path>
         </svg>
-        <span className="text-lg py-8 text-gray-900">Loading...</span>
+        <span className="text-lg py-8">Loading...</span>
       </div>
     </div>
   );

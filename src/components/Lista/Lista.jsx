@@ -5,7 +5,7 @@ const Lista = ({ estudiante }) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const getEstudiantes = () => {
-      const apiURL = process.env.REACT_APP_URLAPI;
+      const apiURL = process.env.REACT_APP_URL_API;
       fetch(`${apiURL}verSolicitudes`)
         .then((res) => res.json())
         .then((res) => setEstudiantes(res.Solicitudes));
