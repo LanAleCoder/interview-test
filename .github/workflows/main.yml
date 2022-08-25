@@ -43,6 +43,7 @@ jobs:
           echo test, and deploy your project.
       - name: Deploy
         with:
+         run: npm run deploy 
          GITHUB_TOKEN: ${{ secrets.TOKEN }}
          BRANCH: gh-pages
          FOLDER: build
