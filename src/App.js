@@ -3,6 +3,7 @@ import Form from "./components/Form";
 import Lista from "./components/Lista";
 import { Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
+import Spinner from "./components/Spinner/Spinner";
 function App() {
   const [estudiante, setEstudiante] = useState({
     _id: "",
@@ -15,7 +16,6 @@ function App() {
     generoPoesia: "",
     direccion: "",
   });
-  
 
   return (
     <div>
@@ -27,6 +27,7 @@ function App() {
           }
         />
         <Route path="reporte" element={<Lista />} />
+        <Route path="spinner" element={<Spinner />} />
       </Routes>
     </div>
   );
